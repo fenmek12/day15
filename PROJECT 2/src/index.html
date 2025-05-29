@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+</head>
+<body>
+    <div class="flex items-center justify-center h-screen bg-gray-100">
+        <div class="bg-white p-6 rounded shadow-md w-96">
+            <h2 class="text-2xl font-bold mb-4">Student Registration</h2>
+            <form action="/register" method="POST" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="name" name="name"  class="mt-1 block w-full border-black-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <h4 id="hn" class="text-sm text-gray-500 mt-1">Please enter your full name.</h4>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email"class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <h4 id="he" class="text-sm text-gray-500 mt-1">Please enter your email</h4>
+                </div>
+                <div>
+                    <label for="Grade" class="block text-sm font-medium text-gray-700">Grade</label>
+                    <input type="number" id="grade" name="Grade" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <h4 id="hg" class="text-sm text-gray-500 mt-1">please enter your grade</h4>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Register</button>
+          <h1 id="su"></h1>
+            </form>
+   </div>
+   <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const gradeInput = document.getElementById('grade');
+const su = document.getElementById('su');
+        const hn = document.getElementById('hn');
+        const he = document.getElementById('he');
+        const hg = document.getElementById('hg');
+
+        const name = nameInput.value;
+        const email = emailInput.value;
+        const grade = gradeInput.value;
+
+        hn.style.color = '';
+        he.style.color = '';
+        hg.style.color = '';
+        nameInput.style.borderColor = '';
+        emailInput.style.borderColor = '';
+        gradeInput.style.borderColor = '';
+
+        if (!name || !email || !grade) {
+            hn.style.color = 'red';
+            he.style.color = 'red';
+            hg.style.color = 'red';
+            nameInput.style.borderColor = 'red';
+            emailInput.style.borderColor = 'red';
+            gradeInput.style.borderColor = 'red';
+            return;
+        }
+
+        if (!email.includes('@')) {
+            he.textContent = 'Please enter a valid email address.';
+            he.style.color = 'red';
+            return;
+        }
+
+        if (isNaN(grade) || grade < 1 || grade > 12) {
+            hg.textContent = 'Please enter a valid grade between 1 and 12.';
+            hg.style.color = 'red';
+            return;
+        }
+
+        console.log(`Name: ${name}, Email: ${email}, Grade: ${grade}`);
+     su.textContent = 'Registration successful!';
+        su.style.color = 'green';
+    su.style.fontSize = '20px';
+        su.style.fontWeight = 'bold';
+        su.style.textAlign = 'center';
+        su.style.marginTop = '10px';
+        
+       form.reset();
+
+     });
+    });
+
+   </script>
+</body>
+
+</html>
